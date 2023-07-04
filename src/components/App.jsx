@@ -12,7 +12,7 @@ export class App extends Component {
     filter: '',
   };
 
-  SubmitContact = el => {
+  submitContact = el => {
     const { contacts } = this.state;
 
     if (contacts.some(({ name }) => name === el.name)) {
@@ -42,7 +42,7 @@ export class App extends Component {
     return (
       <Phonebook>
         <Title>Phonebook</Title>
-        <ContactForm SubmitContact={this.SubmitContact} />
+        <ContactForm SubmitContact={this.submitContact} />
         <Title>Contacts</Title>
         <Filter filter={filter} onChange={this.onChangeFilter} />
         <ContactList
