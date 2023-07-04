@@ -4,6 +4,7 @@ import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
 import data from 'data.json';
+import { Title, Phonebook } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -37,18 +38,19 @@ export class App extends Component {
   };
 
   render() {
+    const { filter, contacts } = this.state;
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <Phonebook>
+        <Title>Phonebook</Title>
         <ContactForm SubmitContact={this.SubmitContact} />
-        <h2>Contacts</h2>
-        <Filter filter={this.state.filter} onChange={this.onChangeFilter} />
+        <Title>Contacts</Title>
+        <Filter filter={filter} onChange={this.onChangeFilter} />
         <ContactList
-          contacts={this.state.contacts}
-          filter={this.state.filter.toLowerCase()}
+          contacts={contacts}
+          filter={filter.toLowerCase()}
           onDeleteContact={this.deleteContact}
         />
-      </div>
+      </Phonebook>
     );
   }
 }

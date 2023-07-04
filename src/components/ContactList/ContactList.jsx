@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
+import { List, Item, Btn, Contact } from './ContactList.styled';
 
 class ContactList extends Component {
   render() {
@@ -7,17 +9,23 @@ class ContactList extends Component {
       ? contacts.filter(({ name }) => name.toLowerCase().includes(filter))
       : contacts;
     return (
-      <ul>
+      <List>
         {contactItem.map(({ id, name, number }) => (
-          <li key={id}>
-            {`${name}: ${number}`}
-            <button type="button" onClick={() => onDeleteContact(id)}>
+          <Item key={id}>
+            <Contact> {`${name}: ${number}`}</Contact>
+            <Btn type="button" onClick={() => onDeleteContact(id)}>
               Delete
-            </button>
-          </li>
+            </Btn>
+          </Item>
         ))}
-      </ul>
+      </List>
     );
   }
 }
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  filter: PropTypes.string,
+  onDeleteContact: PropTypes.func,
+};
 export default ContactList;
